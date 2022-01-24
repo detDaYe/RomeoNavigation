@@ -1,4 +1,4 @@
-package org.lumenk.romeonavigation.objects;
+package org.lumenk.romeonavigation.objects.waypoints;
 
 import org.jetbrains.annotations.Nullable;
 

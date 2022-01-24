@@ -1,4 +1,6 @@
-package org.lumenk.romeonavigation.objects;
+package org.lumenk.romeonavigation.objects.waypoints;
+
+import org.lumenk.romeonavigation.objects.roads.Road;
 
 import java.util.ArrayList;
 
