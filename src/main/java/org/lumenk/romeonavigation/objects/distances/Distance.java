@@ -1,6 +1,7 @@
-package org.lumenk.romeonavigation.objects;
+package org.lumenk.romeonavigation.objects.distances;
 
 import org.jetbrains.annotations.Nullable;
+import org.lumenk.romeonavigation.objects.waypoints.Waypoint;
 
 public interface Distance<ID1, ID2> {
 
