@@ -1,9 +1,9 @@
 package org.lumenk.romeonavigation.objects.waypoints;
 
-public abstract class RomeoWaypoint<Id>{
+public class Waypoint<Id>{
 
     private final Id id;
-    public RomeoWaypoint(Id id) {
+    public Waypoint(Id id) {
         this.id = id;
     }
 
