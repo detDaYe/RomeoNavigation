@@ -9,4 +9,7 @@ public abstract class Waypoint<ID> {
         this.id = id;
     }
 
+    public ID getId() {
+        return id;
+    }
 }
