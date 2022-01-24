@@ -1,4 +1,4 @@
-package org.lumenk.romeonavigation;
+package org.lumenk.romeonavigation.objects;
 
 public class Road<ID, WAYPOINT_1_ID, WAYPOINT_2_ID> {
     private Waypoint<WAYPOINT_1_ID> from;
