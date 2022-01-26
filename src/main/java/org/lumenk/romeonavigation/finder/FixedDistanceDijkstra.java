@@ -30,29 +30,35 @@ public class FixedDistanceDijkstra {
         //FixedDistanceRoad<OnRoadWaypoint<WaypointIdType, RoadIdType>, RoadIdType> current;
         FixedDistanceRoad<WaypointIdType, RoadIdType> current, temp;
         //Road<OnRoadWaypoint<WaypointIdType, RoadIdType>, WaypointIdType, RoadIdType> temp;
-        Double minValue = Double.MAX_VALUE / 2;
+
         queue1 = new RomeoQueue<>();
         queue2 = new RomeoQueue<>();
 
         current = null;
         temp = null;
+
         while(true){
 
 
+            //System.out.println("added : " + added.getId());
             for (Road<OnRoadWaypoint<WaypointIdType, RoadIdType>, WaypointIdType, RoadIdType> r : added.getConnectedRoads()) {
                 if(visitBefore.get(r.getTo().getId()) == null) //방문하지 아니한 노드라는 의미
                     queue1.enqueue(r);
             }
 
 
+            Double minValue = Double.MAX_VALUE / 2;
             while(queue1.getCount() > 0){
-                temp = map.searchRoad(Objects.requireNonNull(queue1.dequeue()).getId(), Objects.requireNonNull(temp).getFrom().getId(), temp.getTo().getId());
+                //temp = map.searchRoad(Objects.requireNonNull(queue1.dequeue()).getId(), Objects.requireNonNull(temp).getFrom().getId(), temp.getTo().getId());
+                //temp = (FixedDistanceRoad<WaypointIdType, RoadIdType>) queue1.dequeue();
+                temp = Objects.requireNonNull((FixedDistanceRoad<WaypointIdType, RoadIdType>) queue1.dequeue());
                 double d = temp.getDistance() + distanceSum.get(temp.getFrom().getId());
                 if(d < minValue){
                     if(current != null)
                         queue2.enqueue(current);
                     current = temp;
                     minValue = d;
+                    //System.out.println("found min : " + current.getTo().getId());
 
                 }else{
                     queue2.enqueue(temp);
@@ -69,6 +75,9 @@ public class FixedDistanceDijkstra {
             while(queue2.getCount() > 0)
                 queue1.enqueue(Objects.requireNonNull(queue2.dequeue()));
             if(queue1.getCount() == 0) return null;
+
+            added = current.getTo();
+            //System.out.println("[Update] add waypoint : " + added.getId());
 
         }
 

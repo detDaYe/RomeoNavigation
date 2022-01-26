@@ -16,12 +16,18 @@ public class InMemoryRoadMapData<WaypointIdType, RoadIdType> implements RoadMapD
 
     @Override
     public FixedDistanceRoad<WaypointIdType, RoadIdType> searchRoad(RoadIdType id, WaypointIdType from, WaypointIdType to) {
-        return null;
+        Road<Waypoint<WaypointIdType>, WaypointIdType, RoadIdType> keyObject
+                = new Road<Waypoint<WaypointIdType>, WaypointIdType, RoadIdType>(searchWaypointById(from),
+                searchWaypointById(to), id);
+
+        //return roadHashMap.getOrDefault();
+        //return roadHashMap.getOrDefault(new Road<>)
+        return roadHashMap.getOrDefault(keyObject, null);
     }
 
     @Override
     public OnRoadWaypoint<WaypointIdType, RoadIdType> searchWaypointById(WaypointIdType id) {
-        return null;
+        return waypointHashMap.getOrDefault(id, null);
     }
 
     public void addWaypoint(OnRoadWaypoint<WaypointIdType, RoadIdType> waypoint){
