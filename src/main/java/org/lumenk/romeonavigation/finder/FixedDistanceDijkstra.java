@@ -12,6 +12,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * @deprecated RomeoDijkstraRouteFinder를 사용하세요
+ */
+@Deprecated
 public class FixedDistanceDijkstra {
     public static <WaypointIdType,
             RoadIdType> ArrayList<RouteInfo<WaypointIdType, RoadIdType>> find(RoadMapData<WaypointIdType,
