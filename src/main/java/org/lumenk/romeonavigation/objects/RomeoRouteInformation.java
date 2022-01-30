@@ -14,7 +14,7 @@ public class RomeoRouteInformation<WaypointIdType, RoadIdType> {
         return segments;
     }
 
-    private class RouteSegment{
+    public class RouteSegment{
         //
 
 
@@ -25,9 +25,25 @@ public class RomeoRouteInformation<WaypointIdType, RoadIdType> {
             this.sums = sums;
         }
 
-        WaypointIdType from;
-        WaypointIdType to;
-        RoadIdType via;
-        double sums;
+        final WaypointIdType from;
+        final WaypointIdType to;
+        final RoadIdType via;
+        final double sums;
+
+        public WaypointIdType getFrom() {
+            return from;
+        }
+
+        public WaypointIdType getTo() {
+            return to;
+        }
+
+        public RoadIdType getVia() {
+            return via;
+        }
+
+        public double getSums() {
+            return sums;
+        }
     }
 }

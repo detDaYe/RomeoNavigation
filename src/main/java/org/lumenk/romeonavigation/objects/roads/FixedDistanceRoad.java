@@ -10,15 +10,16 @@ import org.lumenk.romeonavigation.objects.waypoints.Waypoint;
  * @param <RoadIdType> 경로의 id타입을 지정하십시오.
  */
 public class FixedDistanceRoad<WaypointIdType, RoadIdType>
-        extends Road<OnRoadWaypoint<WaypointIdType, RoadIdType>, WaypointIdType, RoadIdType>{
+        extends DistanceRoad<WaypointIdType, RoadIdType>{
 
-    private final Double distance;
-    public FixedDistanceRoad(OnRoadWaypoint<WaypointIdType, RoadIdType> from, OnRoadWaypoint<WaypointIdType, RoadIdType> to, RoadIdType id, @NotNull Double distance) {
-        super(from, to, id);
+    private final double distance;
+    public FixedDistanceRoad(OnRoadWaypoint<WaypointIdType, RoadIdType> from, OnRoadWaypoint<WaypointIdType, RoadIdType> to, RoadIdType id, double distance) {
+        super(from, to, id, distance);
         this.distance = distance;
+
     }
 
-    @NotNull
+
     public Double getDistance() {
         return distance;
     }

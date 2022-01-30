@@ -31,6 +31,7 @@ public class Road<WaypointType extends Waypoint<WaypointIdType>, WaypointIdType,
         return id;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -39,15 +40,13 @@ public class Road<WaypointType extends Waypoint<WaypointIdType>, WaypointIdType,
         Road<?, ?, ?> road = (Road<?, ?, ?>) o;
 
         if (!from.equals(road.from)) return false;
-        if (!to.equals(road.to)) return false;
-        return id.equals(road.id);
+        return to.equals(road.to);
     }
 
     @Override
     public int hashCode() {
         int result = from.hashCode();
         result = 31 * result + to.hashCode();
-        result = 31 * result + id.hashCode();
         return result;
     }
 }
