@@ -18,12 +18,12 @@ public class RomeoDijkstraRouteFinder {
     public static <WaypointIdType, RoadIdType> RomeoRouteInformation<WaypointIdType, RoadIdType> find(WaypointIdType departure, WaypointIdType arrival, DistanceRoadMapData<WaypointIdType, RoadIdType, ? extends DistanceRoad<WaypointIdType, RoadIdType>> map){
         HashMap<WaypointIdType, WaypointIdType> visitBefore = new HashMap<>();
         HashMap<WaypointIdType, RoadIdType> visitBeforeVia = new HashMap<>();
-        //HashMap<WaypointIdType, Boolean> visited = new HashMap<>();
+        HashMap<WaypointIdType, Boolean> visited = new HashMap<>();
         HashMap<WaypointIdType, Double> distanceSum = new HashMap<>();
 
         visitBefore.put(departure, departure);
         distanceSum.put(departure, 0.0);
-        //visited.put(departure, true);
+        visited.put(departure, true);
 
         //Waypoint<WaypointIdType> added = Objects.requireNonNull(map.searchWaypointById(departure));
         OnRoadWaypoint<WaypointIdType, RoadIdType> added = Objects.requireNonNull(map.searchWaypointById(departure));
@@ -40,7 +40,7 @@ public class RomeoDijkstraRouteFinder {
             for (Road<OnRoadWaypoint<WaypointIdType, RoadIdType>, WaypointIdType, RoadIdType> r : added.getConnectedRoads()) { //방금 막 추가한 노드에 대하여 연결된 도로를 가져오자
                 //queue1.enqueue(r);
                 //System.out.println("added road to q1");
-                if(visitBefore.get(r.getTo().getId()) == null) //방문하지 않는 노드를 목적지로 하는 도로라면
+                if(!visited.getOrDefault(r.getTo().getId(), false)) //방문하지 않는 노드를 목적지로 하는 도로라면
                 {
                     //System.out.println("added road... : " + r.getTo().getId());
                     //System.out.println("added road dep " + r.getFrom().getId() + " / arr " + r.getTo().getId());
@@ -52,6 +52,8 @@ public class RomeoDijkstraRouteFinder {
             double minValue = 99.0;//Double.MAX_VALUE / 2;
             while(queue1.getCount() > 0){ //큐에 있는 모든 검토 대상에 대하여 살펴보자.
                 temp = Objects.requireNonNull(queue1.dequeue()); //큐에서 하나의 도로를 가져오자
+                if(visited.getOrDefault(temp.getTo().getId(), false))
+                    continue;
                 double d = Objects.requireNonNull(map.searchRoad(temp.getId(), temp.getFrom().getId(), temp.getTo().getId())).getDistance()
                         + distanceSum.get(temp.getFrom().getId()); //이 도로의 시점과 종점간의 거리에 출발지로부터 이 도로의 시점까지의 거리를 더해 보자
 
@@ -72,8 +74,9 @@ public class RomeoDijkstraRouteFinder {
             //이제 current에는 거리의 합이 최소가 되는 도로가 있다.
             //System.out.println("Let's add the road");
             added = Objects.requireNonNull(current).getTo(); //방문 노드에 도로의 종점을 추가한다.
-            //visited.put(current.getTo().getId(), true);
-            //System.out.println("current load founded.. dep " + current.getFrom().getId() + " " + current.getTo().getId() + " sums " + minValue);
+            //if(visited.getOrDefault(current.getTo().getId(), false)) System.out.println("...?!");
+            visited.put(current.getTo().getId(), true);
+            //System.out.println("current road founded.. dep " + current.getFrom().getId() + " " + current.getTo().getId() + " sums " + minValue);
             //System.out.println("start point? " + current.getFrom().getId());
             //System.out.println("added waypoint " + added.getId());
             visitBefore.put(current.getTo().getId(), current.getFrom().getId()); //이 도로의 종점을 key로 하여 시점을 기록한다.
