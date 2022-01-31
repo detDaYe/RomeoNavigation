@@ -1,7 +1,7 @@
 package org.lumenk.romeonavigation;
 
 import org.lumenk.romeonavigation.finder.RomeoDijkstraRouteFinder;
-import org.lumenk.romeonavigation.objects.RomeoRouteInformation;
+import org.lumenk.romeonavigation.routeinfo.RomeoRouteInformation;
 import org.lumenk.romeonavigation.objects.mapdata.InMemoryRoadMapData;
 import org.lumenk.romeonavigation.objects.roads.FixedDistanceRoad;
 import org.lumenk.romeonavigation.objects.waypoints.OnRoadWaypointInMemoryImpl;

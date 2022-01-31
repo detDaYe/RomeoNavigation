@@ -1,4 +1,4 @@
-package org.lumenk.romeonavigation.objects;
+package org.lumenk.romeonavigation.routeinfo;
 
 public class RouteInfo<WaypointIdType, RoadIdType> {
     private final WaypointIdType from;

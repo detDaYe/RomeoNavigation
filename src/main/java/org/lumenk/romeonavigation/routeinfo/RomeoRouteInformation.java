@@ -1,4 +1,4 @@
-package org.lumenk.romeonavigation.objects;
+package org.lumenk.romeonavigation.routeinfo;
 
 import java.util.ArrayList;
 

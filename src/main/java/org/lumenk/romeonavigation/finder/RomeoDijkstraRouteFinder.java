@@ -2,14 +2,12 @@ package org.lumenk.romeonavigation.finder;
 
 import org.lumenk.romeonavigation.datastructures.RomeoQueue;
 import org.lumenk.romeonavigation.datastructures.RomeoStack;
-import org.lumenk.romeonavigation.objects.RomeoRouteInformation;
-import org.lumenk.romeonavigation.objects.RouteInfo;
+import org.lumenk.romeonavigation.routeinfo.RomeoRouteInformation;
+import org.lumenk.romeonavigation.routeinfo.RouteInfo;
 import org.lumenk.romeonavigation.objects.mapdata.DistanceRoadMapData;
-import org.lumenk.romeonavigation.objects.mapdata.RoadMapData;
 import org.lumenk.romeonavigation.objects.roads.DistanceRoad;
 import org.lumenk.romeonavigation.objects.roads.Road;
 import org.lumenk.romeonavigation.objects.waypoints.OnRoadWaypoint;
-import org.lumenk.romeonavigation.objects.waypoints.Waypoint;
 
 import java.util.HashMap;
 import java.util.Objects;
